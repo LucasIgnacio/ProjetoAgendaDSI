@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <nav aria-label="breadcrumb">
+	            <ol class="breadcrumb">
+	   				<li class="breadcrumb-item"><a href="/home">Home</a></li>
+	   				<li class="breadcrumb-item"><a href="/agendamento">Agendamento</a></li>
+	   				<li class="breadcrumb-item active" aria-current="page">Cadastro de Agendamento</li>
+				</ol>
+			</nav>
+            <div class="border border-dark">
+                <form th:action="@{/agendamento(form)}" th:object="${agendamento}" action="#" method="post">
+                	<input type="hidden" id="txtcod"  th:field="*{codAgenda}">
+                	<div class="form-group">
+                		
+                		<label for="dateAgenda">Data do Agendamento</label>
+                		<input type="date" class="form-control" th:field="*{dataAgenda}"  id="dateAgenda" placeholder="Inserir Data" required>
+                		
+						<label for="slcStatus">Status Agendamento</label>
+                		<select class="form-control" id="slcStatus" th:field="*{statusAgenda}">
+                			<option th:value="Masculino">Agendado</option>
+                			<option th:value="Feminino">Cancelado</option>
+                		</select>
+						
+                		<label for="dateIni">Hora Inicio</label>
+                		<input type="time" class="form-control" th:field="*{horaInicial}" id="dateIni" placeholder="Inserir Horario de Inicio" min="9:00" max="18:00" required>
+                		
+						<label for="dateFim">Hora Final</label>
+                		<input type="time" class="form-control" th:field="*{horaFinal}" id="dateFim" placeholder="Inserir Horario Final" min="9:00" max="18:00" required>
+						
+                		<!-- >label for="slcCliente">Cliente</label>
+                		<select class="form-control" id="slcCliente" th:field="*{cliente}">
+						    <option 
+						    th:each="umpac : ${listapac}" 
+						    th:value="${umpac.codCliente}" 
+						    th:text="${umpac.nomeCliente}">
+						    </option>
+						</select-->
+                		
+                		<label for="txtCliente">Cliente</label>
+                		<input type="text" class="form-control" th:field="*{cliente}" id="txtCliente" placeholder="Inserir Cliente">
+                		
+						<label for="txtUsuario">Usuario</label>
+                		<input type="text" class="form-control" th:field="*{usuario}" id="txtUsuario" placeholder="Inserir Usuario">
+						
+						<!--label for="descUsuario">Nome Usuario</label>
+                		<input type="text" class="form-control" th:field="*{?}" id="descUsuario"-->
+						
+                		<label for="txtSala">Sala</label>
+                		<input type="text" class="form-control" th:field="*{sala}" id="txtSala" placeholder="Inserir Sala">
+						
+						<label for="txtServico">Servico</label>
+                		<input type="text" class="form-control" th:field="*{servico}" id="txtServico" placeholder="Inserir Servico">
+						
+						<!--label for="descServico">Descricao do Servico</label>
+                		<input type="text" class="form-control" th:field="*{?}" id="descServico"-->
+                		
+                	</div>
+                	<button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+    </body>
+</html>

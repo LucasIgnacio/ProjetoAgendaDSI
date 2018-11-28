@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <nav aria-label="breadcrumb">
+	            <ol class="breadcrumb">
+	   				<li class="breadcrumb-item"><a href="/home">Home</a></li>
+	   				<li class="breadcrumb-item"><a href="/usuario">Usuario</a></li>
+	   				<li class="breadcrumb-item active" aria-current="page">Cadastro de Usuario</li>
+				</ol>
+			</nav>
+            <div class="border border-dark">
+                <form th:action="@{/usuario(form)}" th:object="${usuario}" action="#" method="post">
+                	<input type="hidden" id="txtcod"  th:field="*{codUsuario}">
+                	<div class="form-group">
+                		
+                		<label for="txtNome">Nome</label>
+                		<input type="text" class="form-control" th:field="*{nomeUsuario}"  id="txtnome" placeholder="Inserir Nome">
+                		
+                		<label for="txtNasc">Data Nascimento</label>
+                		<input type="text" class="form-control" th:field="*{aniverUsuario}" id="txtNasc" placeholder="Inserir Data de Nascimento">
+                		
+                		<label for="txtCPF">CPF</label>
+                		<input type="text" class="form-control" th:field="*{cpfUsuario}" id="txtCPF" placeholder="Inserir CPF">
+                		
+                		<label for="slcsexo">Sexo</label>
+                		<select class="form-control" id="slcsexo" th:field="*{sexoUsuario}">
+                			<option th:value="Masculino">Masculino</option>
+                			<option th:value="Feminino">Feminino</option>
+                			<option th:value="Outros">Outros</option>
+                		</select>
+
+                		<label for="txtEnd">Endereco</label>
+                		<input type="text" class="form-control" th:field="*{endUsuario}" id="txtEnd" placeholder="Inserir endereco e numero">
+                	</div>
+                	<button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+            $(function () {
+                $("#txtCPF").mask("999.999.999-99");
+                $("#txtNasc").mask("99/99/9999");
+                });
+        </script>
+    </body>
+</html>

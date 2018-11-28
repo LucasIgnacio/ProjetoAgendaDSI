@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <nav aria-label="breadcrumb">
+            	<ol class="breadcrumb">
+   					<li class="breadcrumb-item"><a href="/home">Home</a></li>
+   					<li class="breadcrumb-item"><a href="/cliente">Cliente</a></li>
+   					<li class="breadcrumb-item active" aria-current="page">Cadastro de Cliente</li>
+				</ol>
+			</nav>
+            <div class="border border-dark">
+                <form th:action="@{/cliente(form)}" th:object="${cliente}" action="#" method="post">
+                	<input type="hidden" id="txtcod"  th:field="*{codCliente}">
+                	<div class="form-group">
+                		
+                		<label for="txtNome">Nome</label>
+                		<input type="text" class="form-control" th:field="*{nomeCliente}"  id="txtnome" placeholder="Inserir Nome">
+                		
+                		<label for="txtNasc">Data Nascimento</label>
+                		<input type="text" class="form-control" th:field="*{aniverCliente}" id="txtNasc" placeholder="Inserir Data de Nascimento">
+                		
+                		<label for="txtCPF">CPF</label>
+                		<input type="text" class="form-control" th:field="*{cpfCliente}" id="txtCPF" placeholder="Inserir CPF">
+                		
+                		<label for="slcsexo">Sexo</label>
+                		<select class="form-control" id="slcsexo" th:field="*{sexoCliente}">
+                			<option th:value="Masculino">Masculino</option>
+                			<option th:value="Feminino">Feminino</option>
+                			<option th:value="Outros">Outros</option>
+                		</select>
+                		
+                		<label for="numTel">Telefone</label>
+                		<input type="number" class="form-control" th:field="*{cellCliente}" id="numTel" placeholder="Inserir telefone/celular">
+                		
+                		<label for="txtEnd">Endereco</label>
+                		<input type="text" class="form-control" th:field="*{endCliente}" id="txtEnd" placeholder="Inserir endereco e numero">
+                		
+                		<label for="numCEP">CEP</label>
+                		<input type="number" class="form-control" th:field="*{cepCliente}" id="numCEP" placeholder="Inserir CEP">
+                		
+                		<label for="txtBairro">Bairro</label>
+                		<input type="text" class="form-control" th:field="*{bairroCliente}" id="txtBairro" placeholder="Inserir Bairro">
+                		
+                		<label for="txtCidade">Cidade</label>
+                		<input type="text" class="form-control" th:field="*{cidadeCliente}" id="txtCidade" placeholder="Inserir Cidade">
+                		
+                	</div>
+                	<button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+        <script type="text/javascript">
+            $(function () {
+                $("#txtCPF").mask("999.999.999-99");
+                $("#txtNasc").mask("99/99/9999");
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+             <nav aria-label="breadcrumb">
+	            <ol class="breadcrumb">
+	   				<li class="breadcrumb-item"><a href="/home">Home</a></li>
+	   				<li class="breadcrumb-item"><a href="/sala">Sala</a></li>
+	   				<li class="breadcrumb-item active" aria-current="page">Cadastro de Sala</li>
+				</ol>
+			</nav>
+            <div class="border border-dark">
+                <form th:action="@{/sala(form)}" th:object="${sala}" action="#" method="post">
+                	<input type="hidden" id="txtcod"  th:field="*{codSala}">
+                	<div class="form-group">
+                		
+                		<label for="txtNome">Nome da Sala</label>
+                		<input type="text" class="form-control" th:field="*{nomeSala}"  id="txtnome" placeholder="Inserir Nome da Sala">
+                	</div>
+                	<button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+    </body>
+</html>

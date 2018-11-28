@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:include="layout :: htmlhead"></head>
+    <body>
+        <div class="Container">
+            <nav th:replace="layout :: menu">(menu)</nav>
+            <h1 th:text="${status}"></h1>
+            <h2 th:text="${message}"></h2>
+            <a href="@{/home}">Home</a>
+            <nav th:replace="layout :: menubottom">(menubottom)</nav>
+        </div>
+    </body>
+</html>

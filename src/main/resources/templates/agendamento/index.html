@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:include="layout :: htmlhead"></head>
+	<body>
+		<div class="Container">
+			<nav th:replace="layout :: menu">(menu)</nav>
+			<nav aria-label="breadcrumb">
+  				<ol class="breadcrumb">
+    				<li class="breadcrumb-item"><a href="/home">Home</a></li>
+    				<li class="breadcrumb-item active" aria-current="page">Agendamento</li>
+ 				</ol>
+			</nav>
+			 <a href="form.html" th:href="@{/agendamento/novo}" class="btn btn-primary btn-lg" role="button">Novo Agendamento</a>
+			<div class=" border border-dark">
+				<table class="table">
+					<thead class="thead-light">
+						<tr>
+							<th scope="col">Data do Agendamento</th>
+							<th scope="col">Status do Agendamento</th>
+							<th scope="col">Horario Inicial</th>
+							<th scope="col">Horario Final</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">Nome Cliente</th>
+							<th scope="col">Usuario</th>
+							<th scope="col">Nome Usuario</th>
+							<th scope="col">Sala</th>
+							<th scope="col">Nome Sala</th>
+							<th scope="col">Servico</th>
+							<th scope="col">Nome Servico</th>
+
+						</tr>			
+					</thead>
+					<tbody>
+						<tr scope="row" th:each="umpac : ${listapac}">
+							<td th:text="${umpac.dataAgenda}"></td>
+							<td th:text="${umpac.statusAgenda}"></td>
+							<td th:text="${umpac.horaInicial}"></td>
+							<td th:text="${umpac.horaFinal}"></td>
+							<td th:text="${umpac.cliente}"></td>
+							<td th:text="${umpac.usuario}"></td>
+							<td th:text="${umpac.sala}"></td>
+							<td th:text="${umpac.servico}"></td>
+							<td>
+								<a href="form.html" th:href="@{'/agendamento/alterar/' + ${umpac.codAgenda}}" class="btn btn-secondary btn-lg" role="button">Alterar</a>
+								<a href="#" class="btn btn-warning btn-lg" role="button" data-toggle="modal" data-target="#confirmaExclusao" th:data-id="${umpac.codAgenda}">Excluir</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="modal fade" id="confirmaExclusao" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirmação de exclusão</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">X</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Confirma a exclusão deste registro do Paciente?</p>
+                        </div>
+                        <div class="modal-footer" scope="row" th:each="umpac : ${listapac}">
+                            <a href="#" class="btn btn-warning btn-lg" role="button" th:href="@{'/agendamento/remover/' + ${umpac.codAgenda}}">Sim</a>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div th:include="layout :: footer" id="footer">(footer)</div>
+	</body>
+</html>
